@@ -161,16 +161,16 @@ set pastetoggle=<Leader>v
 set showmode
 
 " Disable Arrow Remaps
-nnoremap <up> <nop>
-nnoremap <down> <nop>
-nnoremap <left> <nop>
-nnoremap <right> <nop>
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
-nnoremap j gj
-nnoremap k gk
+" nnoremap <up> <nop>
+" nnoremap <down> <nop>
+" nnoremap <left> <nop>
+" nnoremap <right> <nop>
+" inoremap <up> <nop>
+" inoremap <down> <nop>
+" inoremap <left> <nop>
+" inoremap <right> <nop>
+" nnoremap j gj
+" nnoremap k gk
 
 " Invisibles
 set list
@@ -249,3 +249,6 @@ endif
 if filereadable(glob('./.local.vimrc'))
     so .local.vimrc
 endif
+
+source ~/.vim/google_python_style.vim
+let g:airline_theme="murmur"
