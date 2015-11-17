@@ -24,6 +24,7 @@ Plugin 'vim-scripts/greplace.vim'
 Plugin 'fatih/vim-go'
 Plugin 'tfnico/vim-gradle'
 Plugin 'jeetsukumaran/vim-buffergator'
+Plugin 'joanrivera/vim-zimwiki-syntax'
 
 call vundle#end()
 filetype plugin indent on
@@ -217,6 +218,8 @@ nmap <leader>kk :BuffergatorMruCycleNext<cr>
 nmap <leader>bl :BuffergatorOpen<cr>
 nmap <leader>T :enew<cr>
 nmap <leader>bq :bp <BAR> bd #<cr>
+nnoremap <silent> [b :BuffergatorMruCyclePrev<CR>
+nnoremap <silent> ]b :BuffergatorMruCycleNext<CR>
 
 " FlagIt
 let g:Fi_OnlyText = 1
@@ -245,10 +248,19 @@ if &diff
     set diffopt+=iwhite
 endif
 
+source ~/.vim/google_python_style.vim
+let g:airline_theme="murmur"
+set tabpagemax=30
+
+" Toggle line numbers with ctrl-n ctrl-n
+nmap <C-N><C-N> :set invnumber<CR>
+
 " Local Config
 if filereadable(glob('./.local.vimrc'))
     so .local.vimrc
 endif
 
-source ~/.vim/google_python_style.vim
-let g:airline_theme="murmur"
+set backupdir=./.vimbackup,~/.vimbackup//,/tmp//,.
+set directory=./.vimbackup,~/.vimbackup//,/tmp//,.
+set autoread
+au FocusGained,BufEnter,CursorHold,CursorHoldI * checktime
