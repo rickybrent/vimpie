@@ -25,6 +25,7 @@ Plugin 'fatih/vim-go'
 Plugin 'tfnico/vim-gradle'
 Plugin 'jeetsukumaran/vim-buffergator'
 Plugin 'joanrivera/vim-zimwiki-syntax'
+Plugin 'hynek/vim-python-pep8-indent'
 
 call vundle#end()
 filetype plugin indent on
@@ -89,6 +90,8 @@ set copyindent
 set ts=4 sw=4 et
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
+
+au FileType python setl sw=2 sts=2 et
 
 " Always display the status line
 set laststatus=2
@@ -264,3 +267,29 @@ set backupdir=./.vimbackup,~/.vimbackup//,/tmp//,.
 set directory=./.vimbackup,~/.vimbackup//,/tmp//,.
 set autoread
 au FocusGained,BufEnter,CursorHold,CursorHoldI * checktime
+
+
+" Toggle paste with F2; then try to auto-detect pasting from https://coderwall.com/p/if9mda/automatically-set-paste-mode-in-vim-when-pasting-in-insert-mode
+set pastetoggle=<F2>
+
+function! WrapForTmux(s)
+  if !exists('$TMUX')
+    return a:s
+  endif
+
+  let tmux_start = "\<Esc>Ptmux;"
+  let tmux_end = "\<Esc>\\"
+
+  return tmux_start . substitute(a:s, "\<Esc>", "\<Esc>\<Esc>", 'g') . tmux_end
+endfunction
+
+let &t_SI .= WrapForTmux("\<Esc>[?2004h")
+let &t_EI .= WrapForTmux("\<Esc>[?2004l")
+
+function! XTermPasteBegin()
+  set pastetoggle=<Esc>[201~
+  set paste
+  return ""
+endfunction
+
+inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
