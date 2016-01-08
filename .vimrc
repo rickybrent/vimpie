@@ -224,6 +224,13 @@ nmap <leader>bq :bp <BAR> bd #<cr>
 nnoremap <silent> [b :BuffergatorMruCyclePrev<CR>
 nnoremap <silent> ]b :BuffergatorMruCycleNext<CR>
 
+" Like weechat:
+nnoremap <silent> <A-left> :BuffergatorMruCyclePrev<CR>
+nnoremap <silent> <esc><left> :BuffergatorMruCyclePrev<CR>
+nnoremap <silent> <A-right> :BuffergatorMruCycleNext<CR>
+nnoremap <silent> <esc><right> :BuffergatorMruCycleNext<CR>
+nnoremap <silent> <esc>. :bdelete<CR>
+
 " FlagIt
 let g:Fi_OnlyText = 1
 let g:Fi_Flags = { "arrow" : ["", "> ", 1, "texthl=Title"],
