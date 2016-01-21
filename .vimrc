@@ -225,10 +225,10 @@ nnoremap <silent> [b :BuffergatorMruCyclePrev<CR>
 nnoremap <silent> ]b :BuffergatorMruCycleNext<CR>
 
 " Like weechat:
-nnoremap <silent> <A-left> :BuffergatorMruCyclePrev<CR>
-nnoremap <silent> <esc><left> :BuffergatorMruCyclePrev<CR>
-nnoremap <silent> <A-right> :BuffergatorMruCycleNext<CR>
-nnoremap <silent> <esc><right> :BuffergatorMruCycleNext<CR>
+nnoremap <silent> <A-left> :bpref<CR>
+nnoremap <silent> <esc><left> :bprev<CR>
+nnoremap <silent> <A-right> :bnext<CR>
+nnoremap <silent> <esc><right> :bnext<CR>
 nnoremap <silent> <esc>. :bdelete<CR>
 
 " FlagIt
