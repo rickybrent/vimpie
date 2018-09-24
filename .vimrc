@@ -27,9 +27,24 @@ Plugin 'tfnico/vim-gradle'
 Plugin 'jeetsukumaran/vim-buffergator'
 Plugin 'joanrivera/vim-zimwiki-syntax'
 Plugin 'hynek/vim-python-pep8-indent'
-
+" Add maktaba and codefmt to the runtimepath.
+" (The latter must be installed before it can be used.)
+Plugin 'google/vim-maktaba'
+Plugin 'google/vim-codefmt'
+" Also add Glaive, which is used to configure codefmt's maktaba flags. See
+" `:help :Glaive` for usage.
+Plugin 'google/vim-glaive'
 call vundle#end()
+
 filetype plugin indent on
+
+" the glaive#Install() should go after the "call vundle#end()"
+if !empty(glob(expand("~") . "/.vim/bundle/vim-glaive"))
+  call glaive#Install()
+  " Optional: Enable codefmt's default mappings on the <Leader>= prefix.
+  Glaive codefmt plugin[mappings]
+  Glaive codefmt google_java_executable=`"java -jar " . expand("~") . "/.vim/google-java-format-all-deps.jar"`
+endif
 
 " Encoding and Filetypes
 set encoding=utf8
